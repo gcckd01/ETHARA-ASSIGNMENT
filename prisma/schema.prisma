@@ -3,7 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
+  url      = env("postgresql://postgres:IzGvhzqzIqdRYVZaNzdWocLsuPNJPBxn@postgres.railway.internal:5432/railway")
 }
 
 model User {
