@@ -8,8 +8,8 @@ const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 function createClient() {
   const dbUrl = process.env.DATABASE_URL || "";
 
-  // PostgreSQL for production (Railway)
-  if (dbUrl.startsWith("postgresql") || dbUrl.startsWith("postgres")) {
+  // PostgreSQL for production (Railway) or if explicitly provided
+  if (dbUrl.startsWith("postgresql") || dbUrl.startsWith("postgres") || process.env.NODE_ENV === "production") {
     const pool = new Pool({ connectionString: dbUrl });
     const adapter = new PrismaPg(pool);
     return new PrismaClient({ adapter });
